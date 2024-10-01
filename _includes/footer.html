@@ -5,7 +5,11 @@
         <div class="col-md-7 px-4 mt-3">
 
             <h2 class="h4"><a href="{{ '/' | relative_url }}" class="text-white">{{ site.title }}</a></h2>
-            <p class="text-white"><small>{{ site.description }}</small></p>
+            {% if site.footer_description %}
+              <p class="text-white"><small>{{ site.footer_description }}</small></p>
+            {% else %}
+              <p class="text-white"><small>{{ site.description }}</small></p>
+            {% endif %}
             <nav>
                 <ul id="footer-nav" class="nav nav-pills ">
                     {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
@@ -45,7 +49,7 @@
     </div>
 
     <div class="col-md-12 text-center pt-3 pb-1">
-        <p class="text-white">Last updated {{ site.time | date: '%Y' }}</p>
+        <p class="text-white">Last updated {{ site.time | date: '%F %l:%M %p' }}</p>
     </div>
 
 </footer>
